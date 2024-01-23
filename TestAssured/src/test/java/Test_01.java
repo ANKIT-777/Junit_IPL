@@ -1,34 +1,74 @@
 import org.junit.jupiter.api.Test;
 
 
+import java.util.*;
 
-
-
-
-import java.util.Arrays;
-import java.util.List;
 import org.example.*;
-import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Test_01 {
 
     @Test
     public void testFindNumberOfMatchesPlayedPerYear() {
-        List<Match> matches = getTestMatchesData();
-        Map<String, Integer> actualResult = Main.findMatchesTeamsPlayedPerYear(matches);
+        ArrayList<Match> list= new ArrayList<>();
+        Match match1= new Match();
+        match1.setSeason(2015);
 
-        assertEquals(Integer.valueOf(2), actualResult.get(2015));
-        assertEquals(Integer.valueOf(1), actualResult.get(2015));
+        Match match2= new Match();
+        match2.setSeason(2016);
+
+        Match match3= new Match();
+        match3.setSeason(2017);
+
+        list.add(match1);
+        list.add(match1);
+        list.add(match1);
+
+        list.add(match2);
+        list.add(match2);
+        list.add(match2);
+
+        list.add(match3);
+        list.add(match3);
+        list.add(match3);
+        list.add(match3);
+        list.add(match3);
+
+        HashMap<Integer,Integer> result= new HashMap<>();
+        result.put(2015,3);
+        result.put(2016,3);
+        result.put(2017,5);
+
+
+        assertEquals(result,Main.findMatchesTeamsPlayedPerYear(list),"errror in first method");
+
     }
 
     @Test
     public void testFindNumberOfMatchesWonByEachTeam() {
-        List<Match> matches = getTestMatchesData();
-        Map<String, Integer> actualResult = Main.findMatchesWonByTeams(matches);
 
-        assertEquals(Integer.valueOf(2), actualResult.get("Mumbai Indians"));
-        assertEquals(Integer.valueOf(1), actualResult.get("Gujarat Lions"));
+        Match match1= new Match();
+        match1.setWinner("Royal Challengers Bangalore");
+
+        Match match2= new Match();
+        match2.setWinner("Royal Challengers Bangalore");
+
+        Match match3= new Match();
+        match3.setWinner("Mumbai Indians");
+
+        ArrayList<Match> matches= new ArrayList<>();
+        matches.add(match1);
+        matches.add(match2);
+        matches.add(match3);
+
+        HashMap<String,Integer> expected= new HashMap<>();
+        expected.put("Mumbai Indians",1);
+        expected.put("Royal Challengers Bangalore",2);
+
+        assertEquals(expected,Main.findMatchesWonByTeams(matches));
+
+
     }
 
     @Test
@@ -38,7 +78,7 @@ public class Test_01 {
 
         Map<String, Integer> actualResult = Main.findExtraRunsConcededPerTeamIn2016(matches, deliveries,2016);
 
-        assertEquals(Integer.valueOf(2), actualResult.get("Gujarat Lions"));
+        assertEquals(2, actualResult.get("Gujarat Lions"));
    }
 
     @Test
@@ -48,7 +88,7 @@ public class Test_01 {
 
         Map<String, Integer> actualResult = Main.findTopEconomicalBowlerIn2015(matches, deliveries, 2015);
 
-        assertEquals(30.00, actualResult.get("YS Chahal"), 0.01);
+        assertEquals(15.00, actualResult.get("YS Chahal"), 0.01);
     }
 
     
@@ -90,7 +130,7 @@ public class Test_01 {
         Delivery delivery2 = new Delivery();
         delivery2.setMatchId(1);
         delivery2.setBowler("YS Chahal");
-        delivery2.setTotalRuns(4);
+        delivery2.setTotalRuns(0);
         delivery2.setExtraRuns(0);
         delivery2.setLegByeRuns(0);
         delivery2.setByeRuns(0);
@@ -102,7 +142,7 @@ public class Test_01 {
         delivery3.setMatchId(2);
         delivery3.setBowler("YS Chahal");
         delivery3.setExtraRuns(0);
-        delivery3.setTotalRuns(6);
+        delivery3.setTotalRuns(4);
         delivery3.setLegByeRuns(0);
         delivery3.setByeRuns(0);
         delivery3.setPenaltyRuns(0);
@@ -113,7 +153,7 @@ public class Test_01 {
         delivery4.setMatchId(2);
         delivery4.setBowler("YS Chahal");
         delivery4.setExtraRuns(0);
-        delivery4.setTotalRuns(4);
+        delivery4.setTotalRuns(2);
         delivery4.setLegByeRuns(0);
         delivery4.setByeRuns(0);
         delivery4.setPenaltyRuns(0);
@@ -124,7 +164,7 @@ public class Test_01 {
         delivery5.setMatchId(2);
         delivery5.setBowler("YS Chahal");
         delivery5.setExtraRuns(0);
-        delivery5.setTotalRuns(6);
+        delivery5.setTotalRuns(1);
         delivery5.setLegByeRuns(0);
         delivery5.setByeRuns(0);
         delivery5.setPenaltyRuns(0);
@@ -135,7 +175,7 @@ public class Test_01 {
         delivery6.setMatchId(2);
         delivery6.setBowler("YS Chahal");
         delivery6.setExtraRuns(0);
-        delivery6.setTotalRuns(4);
+        delivery6.setTotalRuns(2);
         delivery6.setLegByeRuns(0);
         delivery6.setByeRuns(0);
         delivery6.setPenaltyRuns(0);
@@ -146,7 +186,7 @@ public class Test_01 {
         delivery7.setMatchId(4);
         delivery7.setBowler("VK Kohli");
         delivery7.setExtraRuns(2);
-        delivery7.setTotalRuns(2);
+        delivery7.setTotalRuns(1);
         delivery7.setLegByeRuns(0);
         delivery7.setByeRuns(0);
         delivery7.setPenaltyRuns(0);

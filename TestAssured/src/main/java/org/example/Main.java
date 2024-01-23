@@ -119,7 +119,7 @@ public class Main {
         return deliveries;
     }
 
-    public static Map<String, Integer> findMatchesTeamsPlayedPerYear(List<Match> matches) {
+    public static Map<Integer, Integer> findMatchesTeamsPlayedPerYear(List<Match> matches) {
 
         Map<Integer, Integer> noOfMatches = new TreeMap<>();
 
@@ -134,7 +134,7 @@ public class Main {
         for (Map.Entry<Integer, Integer> elem : noOfMatches.entrySet()) {
             System.out.println("Season:- " + elem.getKey() + ", No of matches played:- " + elem.getValue());
         }
-        return null;
+        return noOfMatches;
     }
 
     public static Map<String, Integer> findMatchesWonByTeams(List<Match> matches) {
